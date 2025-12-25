@@ -1,1 +1,1 @@
-# Surya Portfolio (Apple-inspired)\n\nUpload these files to the root of your GitHub Pages repo.\n\nEdits:\n- Replace email/LinkedIn in index.html\n- Replace profile photo: assets/images/profile.png\n- Replace resume PDF: assets/resume/Surya_Yogananthan_Resume.pdf\n\nCache tip: bump ?v=1 to ?v=2 in index.html after big CSS/JS changes.\n
+# Surya Portfolio 

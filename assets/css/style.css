@@ -47,7 +47,7 @@ main{max-width:1240px;margin:18px auto;padding:0 14px;display:flex;gap:18px}
 .scroll-to-top.active{opacity:1;visibility:visible}
 .scroll-to-top:hover{transform:translateY(-1px)}
 
-.sidebar{width:320px;flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--shadow-soft);position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:hidden}
+.sidebar{width:320px;width:320px;flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);box-shadow:var(--shadow-soft);position:sticky;top:18px;max-height:calc(100vh - 36px);overflow-y:auto;overflow-x:hidden;padding-bottom:16px;}
 .sidebar-info{padding:14px;display:flex;flex-direction:column;align-items:center;gap:14px}
 .avatar-box{width:100%;border-radius:var(--r-xl);border:1px solid var(--border);overflow:hidden;aspect-ratio:4/5;background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.02));box-shadow:var(--shadow-soft)}
 .avatar-box img{width:100%;height:100%;object-fit:cover}

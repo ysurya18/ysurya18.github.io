@@ -327,7 +327,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /*-----------------------------------*\
-  #LAZY LOADING IMAGES
+  #LAZY LOADING IMAGES - FIXED
 \*-----------------------------------*/
 
 const images = document.querySelectorAll("img[loading='lazy']");
@@ -337,22 +337,22 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
     if (entry.isIntersecting) {
       const img = entry.target;
       
-      // Add fade-in animation
-      img.style.opacity = "0";
-      img.style.transition = "opacity 0.5s ease";
-      
-      img.addEventListener("load", () => {
-        img.style.opacity = "1";
-      });
+      // Ensure image is always visible
+      img.style.opacity = "1";
+      img.removeAttribute("loading");
       
       observer.unobserve(img);
     }
   });
 }, {
-  rootMargin: "50px"
+  rootMargin: "100px"
 });
 
-images.forEach(img => imageObserver.observe(img));
+images.forEach(img => {
+  // Set initial opacity to 1 to prevent fade-out issues
+  img.style.opacity = "1";
+  imageObserver.observe(img);
+});
 
 /*-----------------------------------*\
   #SKILL PROGRESS ANIMATION

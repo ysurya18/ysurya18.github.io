@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Placeholder</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        .placeholder {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+        }
+        .placeholder h1 {
+            margin: 0 0 20px 0;
+            color: #333;
+            font-size: 24px;
+        }
+        .placeholder p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        .filename {
+            background: #f0f0f0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="placeholder">
+        <div class="icon">🖼️</div>
+        <h1>Image Placeholder</h1>
+        <p>This image hasn't been added yet. Please add your images to the appropriate directory.</p>
+        <div class="filename">Check IMAGES_SETUP.md for details</div>
+    </div>
+</body>
+</html>

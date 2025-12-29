@@ -285,16 +285,16 @@ const downloadCvBtn = document.querySelector(".download-cv-btn");
 if (downloadCvBtn) {
   downloadCvBtn.addEventListener("click", function () {
     // Replace this with your actual resume file path
-    const resumePath = "./assets/resume/Sakthivel_Resume.pdf";
+    const resumePath = "./assets/resume/Surya_Resume.pdf";
     
     // Create temporary link and trigger download
     const link = document.createElement("a");
     link.href = resumePath;
-    link.download = "Sakthivel_Ponnampalayam_Sivakumar_Resume.pdf";
+    link.download = "Surya_Resume.pdf";
     
     // For demonstration, show an alert if file doesn't exist
     // Remove this and uncomment the download code when you have the actual file
-    alert("Resume download functionality ready! Please add your resume PDF to: ./assets/resume/");
+    // alert("Resume download");
     
     // Uncomment these lines when you have the actual resume file:
     // document.body.appendChild(link);

@@ -416,46 +416,123 @@
         </header>
 
         <section class="projects">
-          <ul class="portfolio-list">
-            <li class="portfolio-item active">
-              <a href="#" onclick="return false;">
-                <figure class="portfolio-img">
-                  <div class="portfolio-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-1.jpg" alt="Donor Propensity Modeling" loading="lazy">
-                </figure>
-                <h3 class="portfolio-title">Donor Propensity Modeling (Planned Gifts $100K+)</h3>
-                <p class="portfolio-category">Python • Modeling • Segmentation</p>
-              </a>
-            </li>
+          <ul class="project-list">
 
-            <li class="portfolio-item active">
-              <a href="#" onclick="return false;">
-                <figure class="portfolio-img">
-                  <div class="portfolio-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-2.jpg" alt="Fuel Retail KPI Tracking" loading="lazy">
-                </figure>
-                <h3 class="portfolio-title">Fuel Retail KPI Tracking</h3>
-                <p class="portfolio-category">Excel • Reporting • Operations</p>
-              </a>
-            </li>
+      <!-- 1) Ride Fare Prediction -->
+            <li class="project-item active" data-category="modeling">
+          <div class="project-card">
+         <figure class="project-img">
+        <div class="project-item-icon-box">
+          <ion-icon name="eye-outline"></ion-icon>
+        </div>
+        <img src="assets/projects/Project_Demo/ride-fare.jpg" alt="Ride Fare Prediction" loading="lazy">
+      </figure>
 
-            <li class="portfolio-item active">
-              <a href="#" onclick="return false;">
-                <figure class="portfolio-img">
-                  <div class="portfolio-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-3.jpg" alt="Uber Fare Prediction" loading="lazy">
-                </figure>
-                <h3 class="portfolio-title">Uber Fare Prediction</h3>
-                <p class="portfolio-category">Python • XGBoost • Deployment</p>
-              </a>
-            </li>
-          </ul>
+      <div class="project-content">
+        <h3 class="project-title">Ride Fare Prediction & Market Analysis</h3>
+        <p class="project-category">Modeling / Forecasting</p>
+        <span class="project-date">Dec 2024 - Apr 2025</span>
+
+        <p class="project-description">
+          • Built an end-to-end pipeline to forecast Uber/Lyft fares in Boston using 690K+ ride records and 6K+ weather points :contentReference[oaicite:0]{index=0}<br>
+          • Reduced query latency from ~4 minutes to ~12 seconds using BigQuery + PySpark :contentReference[oaicite:1]{index=1}<br>
+          • Achieved MAE of $6.69 using Random Forest / XGBoost models :contentReference[oaicite:2]{index=2}
+        </p>
+
+        <div class="project-tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">BigQuery</span>
+          <span class="tech-tag">PySpark</span>
+          <span class="tech-tag">XGBoost</span>
+          <span class="tech-tag">Flask</span>
+        </div>
+
+        <!-- Update repo link if your repo name is different -->
+        <a href="https://github.com/ysurya18/ride-fare-prediction" target="_blank" class="project-link">
+          <ion-icon name="logo-github"></ion-icon> View on GitHub
+        </a>
+      </div>
+    </div>
+  </li>
+
+
+  <!-- 2) Spotify Streaming Behavior -->
+  <li class="project-item active" data-category="analytics">
+    <div class="project-card">
+      <figure class="project-img">
+        <div class="project-item-icon-box">
+          <ion-icon name="eye-outline"></ion-icon>
+        </div>
+        <img src="assets/projects/Project_Demo/spotify.jpg" alt="Spotify Streaming Behavior Analysis" loading="lazy">
+      </figure>
+
+      <div class="project-content">
+        <h3 class="project-title">Spotify Streaming Behavior Analysis</h3>
+        <p class="project-category">Analytics / Segmentation</p>
+        <span class="project-date">Jan 2025 - Apr 2025</span>
+
+        <p class="project-description">
+          • Analyzed 150K+ streaming records and engineered time-based + engagement features :contentReference[oaicite:3]{index=3}<br>
+          • Predicted skip behavior using SVM (RBF), achieving 99.9% accuracy and 0.98 recall :contentReference[oaicite:4]{index=4}<br>
+          • Segmented listeners into 4 clusters using K-Means + PCA to support personalization :contentReference[oaicite:5]{index=5}
+        </p>
+
+        <div class="project-tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Scikit-learn</span>
+          <span class="tech-tag">SVM</span>
+          <span class="tech-tag">K-Means</span>
+          <span class="tech-tag">ARIMA</span>
+          <span class="tech-tag">Prophet</span>
+        </div>
+
+        <!-- Update repo link if your repo name is different -->
+        <a href="https://github.com/ysurya18/spotify-streaming-behavior" target="_blank" class="project-link">
+          <ion-icon name="logo-github"></ion-icon> View on GitHub
+        </a>
+      </div>
+    </div>
+  </li>
+
+
+  <!-- 3) Airfare Trend Analytics -->
+  <li class="project-item active" data-category="dashboards">
+    <div class="project-card">
+      <figure class="project-img">
+        <div class="project-item-icon-box">
+          <ion-icon name="eye-outline"></ion-icon>
+        </div>
+        <img src="assets/projects/Project_Demo/airfare.jpg" alt="U.S. Airfare Trend Analytics" loading="lazy">
+      </figure>
+
+      <div class="project-content">
+        <h3 class="project-title">U.S. Airfare Trend Analytics</h3>
+        <p class="project-category">Dashboards / Visualization</p>
+        <span class="project-date">Jan 2025 - Apr 2025</span>
+
+        <p class="project-description">
+          • Analyzed 3,000+ airfare records (2018–2024) to assess regional disparities and post-pandemic shifts :contentReference[oaicite:6]{index=6}<br>
+          • Found inflation-adjusted fares increased ~15–25% vs nominal pricing :contentReference[oaicite:7]{index=7}<br>
+          • Built interactive dashboards showing airport-size effects and recovery patterns :contentReference[oaicite:8]{index=8}
+        </p>
+
+        <div class="project-tech-stack">
+          <span class="tech-tag">Tableau</span>
+          <span class="tech-tag">Excel</span>
+          <span class="tech-tag">Data Viz</span>
+          <span class="tech-tag">Time Series</span>
+        </div>
+
+        <!-- Update repo link if your repo name is different -->
+        <a href="https://github.com/ysurya18/us-airfare-trend-analytics" target="_blank" class="project-link">
+          <ion-icon name="logo-github"></ion-icon> View on GitHub
+        </a>
+      </div>
+      </div>
+      </li>
+
+      </ul>
+
         </section>
       </article>
 
@@ -492,23 +569,13 @@
 
         <section class="gallery-section">
           <!-- Filter Tabs -->
-          <ul class="gallery-filter-list">
-            <li class="gallery-filter-item">
-              <button class="active" data-gallery-filter="all">All</button>
-            </li>
-            <li class="gallery-filter-item">
-              <button data-gallery-filter="projects">Projects</button>
-            </li>
-            <li class="gallery-filter-item">
-              <button data-gallery-filter="travel">Travel</button>
-            </li>
-            <li class="gallery-filter-item">
-              <button data-gallery-filter="volunteering">Volunteering</button>
-            </li>
-            <li class="gallery-filter-item">
-              <button data-gallery-filter="leadership">Leadership</button>
-            </li>
-          </ul>
+          <ul class="filter-list">
+  <li class="filter-item"><button class="active" data-filter-btn="all">All</button></li>
+  <li class="filter-item"><button data-filter-btn="analytics">Analytics</button></li>
+  <li class="filter-item"><button data-filter-btn="modeling">Modeling</button></li>
+  <li class="filter-item"><button data-filter-btn="dashboards">Dashboards</button></li>
+</ul>
+
 
           <!-- Gallery Grid -->
           <div class="gallery-grid">

@@ -311,7 +311,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 2px;
 }
 
 .avatar-box {

@@ -859,30 +859,32 @@ Process Improvement, Root Cause Analysis, Documentation</p>
         </section>
 
         <section class="contact-form">
-          <h3 class="h3 form-title">Send Me a Message</h3>
-          <p class="form-subtitle">Have a project in mind or want to collaborate? Drop me a message and I'll get back to you as soon as possible!</p>
+           <h3 class="h3 form-title">Send Me a Message</h3>
+            <p class="form-subtitle">Have a project in mind or want to collaborate? Drop me a message and I'll get back to you as soon as possible!</p>
 
-          <form action="#" class="form" data-form id="contactForm">
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-            </div>
+            <form class="form" id="contactForm">
+    
+               <input type="hidden" name="access_key" value="79d5f4bb-01ee-4808-925d-7b398d1111ab">
 
-            <input type="text" name="subject" class="form-input" placeholder="Subject" required data-form-input>
+             <div class="input-wrapper">
+              <input type="text" name="name" class="form-input" placeholder="Full name" required>
+              <input type="email" name="email" class="form-input" placeholder="Email address" required>
+              </div>
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input rows="6"></textarea>
+              <input type="text" name="subject" class="form-input" placeholder="Subject" required>
 
-            <button class="form-btn" type="submit" data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-          </form>
+              <textarea name="message" class="form-input" placeholder="Your Message" required rows="6"></textarea>
 
-          <!-- Success Message -->
-          <div class="form-success" id="formSuccess">
+             <button class="form-btn" type="submit" id="submitBtn">
+            <ion-icon name="paper-plane"></ion-icon>
+             <span id="btnText">Send Message</span>
+             </button>
+             </form>
+
+            <div class="form-success" id="formSuccess" style="display: none;">
             <ion-icon name="checkmark-circle-outline"></ion-icon>
             <p>Thank you! Your message has been sent successfully. I'll get back to you soon!</p>
-          </div>
+            </div>
         </section>
 
         <!-- Social Links Section -->
@@ -932,6 +934,48 @@ Process Improvement, Root Cause Analysis, Documentation</p>
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <!-- Refresh-->
+  <script>
+        const form = document.getElementById('contactForm');
+        const successDiv = document.getElementById('formSuccess');
+        const btnText = document.getElementById('btnText');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop page from reloading
+
+    // Change button text to show it's working
+        btnText.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+
+        fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+        })
+        .then(async (response) => {
+        const json = await response.json();
+        if (response.status == 200) {
+            // SUCCESS: Hide form, Show success message
+            form.style.display = 'none';
+            successDiv.style.display = 'block';
+        } else {
+            console.log(response);
+            btnText.textContent = 'Something went wrong';
+            alert(json.message); 
+            submitBtn.disabled = false;
+        }
+        })
+        .catch(error => {
+        console.log(error);
+        btnText.textContent = 'Error!';
+        alert('Something went wrong!');
+        submitBtn.disabled = false;
+       });
+      });
+  </script>
 </body>
 
 </html>

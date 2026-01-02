@@ -1662,8 +1662,8 @@ textarea.form-input {
 }
 
 .form-btn {
-  background: var(--bg-gradient-yellow-1);
-  color: var(--smoky-black);
+  background: var(--orange-yellow-crayola); 
+  color: white;                             
   font-size: var(--fs-6);
   font-weight: var(--fw-600);
   padding: 15px;
@@ -1673,9 +1673,13 @@ textarea.form-input {
   align-items: center;
   gap: 10px;
   transition: var(--transition-1);
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-2);
 }
 
 .form-btn:hover {
+  background: var(--vegas-gold);            
   transform: scale(1.02);
   box-shadow: var(--shadow-3);
 }

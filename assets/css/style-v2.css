@@ -1584,25 +1584,25 @@ article.active {
 
 .mapbox {
   margin-bottom: 40px;
-  border-radius: 15px;
+  border-radius: 20px;        /* Slightly more rounded corners */
   overflow: hidden;
   box-shadow: var(--shadow-2);
+  height: 300px;              /* FIX: Sets a neat, fixed height (smaller) */
+  width: 100%;
 }
 
 .mapbox figure {
-  height: 0;
-  padding-bottom: 56.25%;
-  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 0;                 /* Removes the old aspect ratio hack */
 }
 
 .mapbox iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   border: none;
-  filter: grayscale(1) invert(1);
+  filter: none;               /* FIX: Removes the B&W filter so it's COLORFUL */
+  display: block;
 }
 
 .contact-form {

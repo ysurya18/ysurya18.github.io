@@ -539,3 +539,35 @@ console.log("%cEmail: ponnampalayamsivak.s@northeastern.edu", "color: #ffd700; f
 
 // Log successful initialization
 console.log("✓ Portfolio website initialized successfully");
+
+/* Tableau Modal Logic */
+(function () {
+  const openBtn = document.querySelector(".open-airfare-viz");
+  const modal = document.getElementById("airfareVizModal");
+  const backdrop = modal?.querySelector(".viz-modal-backdrop");
+  const closeBtn = modal?.querySelector(".viz-modal-close");
+
+  if (!openBtn || !modal) return;
+
+  const openModal = () => {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  openBtn.addEventListener("click", openModal);
+  backdrop.addEventListener("click", closeModal);
+  closeBtn.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+})();

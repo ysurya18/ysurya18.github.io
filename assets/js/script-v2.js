@@ -571,3 +571,37 @@ console.log("✓ Portfolio website initialized successfully");
     }
   });
 })();
+document.addEventListener("DOMContentLoaded", () => {
+  const openBtn = document.getElementById("openAirfareViz");
+  const modal = document.getElementById("airfareVizModal");
+
+  if (!openBtn || !modal) {
+    console.log("Airfare modal wiring missing:", { openBtn, modal });
+    return;
+  }
+
+  const backdrop = modal.querySelector(".viz-modal-backdrop");
+  const closeBtn = modal.querySelector(".viz-modal-close");
+
+  const openModal = () => {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  openBtn.addEventListener("click", openModal);
+  backdrop?.addEventListener("click", closeModal);
+  closeBtn?.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+  });
+
+  console.log("Airfare modal wired ✅");
+});

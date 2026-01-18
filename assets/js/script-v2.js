@@ -558,23 +558,37 @@ function initTableauInModal(placeholderId) {
 }
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const openBtn = document.getElementById("openAirfareViz");
   const modal = document.getElementById("airfareVizModal");
 
-  if (!openBtn || !modal) {
-    console.log("Airfare modal wiring missing:", { openBtn, modal });
-    return;
-  }
+  if (!openBtn || !modal) return;
 
   const backdrop = modal.querySelector(".viz-modal-backdrop");
   const closeBtn = modal.querySelector(".viz-modal-close");
+
+  let initialized = false;
 
   const openModal = () => {
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+
+    // Initialize only once
+    if (!initialized) {
+      const ph = document.getElementById("viz1768270115605"); // your dashboard 1 placeholder id
+      const obj = ph?.getElementsByTagName("object")[0];
+
+      if (obj) {
+        obj.style.display = "block";
+        obj.style.width = "100%";
+        obj.style.height = "92vh";
+      }
+      initialized = true;
+    }
+
+    // Force resize after modal becomes visible
+    setTimeout(() => window.dispatchEvent(new Event("resize")), 150);
   };
 
   const closeModal = () => {
@@ -590,8 +604,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
   });
-
-  console.log("Airfare modal wired ✅");
 });
 
 

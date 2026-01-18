@@ -1921,3 +1921,26 @@ textarea.form-input {
   cursor: pointer;
   font-size: 18px;
 }
+/* --- Force Tableau to fill the modal --- */
+.viz-modal-body {
+  padding: 0;              /* remove padding so viz can use full space */
+}
+
+/* Make the Tableau placeholder and object stretch */
+.viz-modal-body .tableauPlaceholder {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.viz-modal-body object.tableauViz {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+}
+
+/* Optional: make modal a bit larger */
+.viz-modal-content {
+  width: min(1400px, 96vw);
+  height: 92vh;
+  margin: 4vh auto;
+}

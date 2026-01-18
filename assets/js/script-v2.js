@@ -540,37 +540,25 @@ console.log("%cEmail: ponnampalayamsivak.s@northeastern.edu", "color: #ffd700; f
 // Log successful initialization
 console.log("✓ Portfolio website initialized successfully");
 
-/* Tableau Modal Logic */
-(function () {
-  const openBtn = document.querySelector(".open-airfare-viz");
-  const modal = document.getElementById("airfareVizModal");
-  const backdrop = modal?.querySelector(".viz-modal-backdrop");
-  const closeBtn = modal?.querySelector(".viz-modal-close");
 
-  if (!openBtn || !modal) return;
+function initTableauInModal(placeholderId) {
+  const divElement = document.getElementById(placeholderId);
+  if (!divElement) return;
 
-  const openModal = () => {
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  };
+  const vizElement = divElement.getElementsByTagName("object")[0];
+  if (!vizElement) return;
 
-  const closeModal = () => {
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  };
+  // Make Tableau object visible + fill modal
+  vizElement.style.display = "block";
+  vizElement.style.width = "100%";
+  vizElement.style.height = "92vh";
 
-  openBtn.addEventListener("click", openModal);
-  backdrop.addEventListener("click", closeModal);
-  closeBtn.addEventListener("click", closeModal);
+  // Trigger Tableau resize after modal opens
+  setTimeout(() => window.dispatchEvent(new Event("resize")), 150);
+}
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("is-open")) {
-      closeModal();
-    }
-  });
-})();
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const openBtn = document.getElementById("openAirfareViz");
   const modal = document.getElementById("airfareVizModal");
@@ -626,6 +614,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    initTableauInModal("viz-airfare-2");
   };
 
   const closeModal = () => {

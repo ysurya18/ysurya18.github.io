@@ -540,105 +540,57 @@ console.log("%cEmail: ponnampalayamsivak.s@northeastern.edu", "color: #ffd700; f
 // Log successful initialization
 console.log("✓ Portfolio website initialized successfully");
 
-
-function initTableauInModal(placeholderId) {
-  const divElement = document.getElementById(placeholderId);
-  if (!divElement) return;
-
-  const vizElement = divElement.getElementsByTagName("object")[0];
-  if (!vizElement) return;
-
-  // Make Tableau object visible + fill modal
-  vizElement.style.display = "block";
-  vizElement.style.width = "100%";
-  vizElement.style.height = "92vh";
-
-  // Trigger Tableau resize after modal opens
-  setTimeout(() => window.dispatchEvent(new Event("resize")), 150);
-}
-
-
 document.addEventListener("DOMContentLoaded", () => {
-  const openBtn = document.getElementById("openAirfareViz");
-  const modal = document.getElementById("airfareVizModal");
+  const DASHBOARD_1_URL =
+    "https://public.tableau.com/views/Prevs_PostPandemicAirfareTrends/PreandPostPandemic?:showVizHome=no&:embed=true&:toolbar=yes";
 
-  if (!openBtn || !modal) return;
+  const DASHBOARD_2_URL =
+    "https://public.tableau.com/views/2018-2024Airfare/Dashboard1?:showVizHome=no&:embed=true&:toolbar=yes";
 
-  const backdrop = modal.querySelector(".viz-modal-backdrop");
-  const closeBtn = modal.querySelector(".viz-modal-close");
+  function wireModal(openBtnId, modalId, mountId, url) {
+    const openBtn = document.getElementById(openBtnId);
+    const modal = document.getElementById(modalId);
+    const mount = document.getElementById(mountId);
 
-  let initialized = false;
+    if (!openBtn || !modal || !mount) return;
 
-  const openModal = () => {
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    const backdrop = modal.querySelector(".viz-modal-backdrop");
+    const closeBtn = modal.querySelector(".viz-modal-close");
 
-    // Initialize only once
-    if (!initialized) {
-      const ph = document.getElementById("viz1768270115605"); // your dashboard 1 placeholder id
-      const obj = ph?.getElementsByTagName("object")[0];
+    const openModal = () => {
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
 
-      if (obj) {
-        obj.style.display = "block";
-        obj.style.width = "100%";
-        obj.style.height = "92vh";
+      if (!mount.querySelector("iframe")) {
+        const iframe = document.createElement("iframe");
+        iframe.src = url;
+        iframe.title = "Tableau Dashboard";
+        iframe.loading = "lazy";
+        iframe.allowFullscreen = true;
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "0";
+        mount.appendChild(iframe);
       }
-      initialized = true;
-    }
+    };
 
-    // Force resize after modal becomes visible
-    setTimeout(() => window.dispatchEvent(new Event("resize")), 150);
-  };
+    const closeModal = () => {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      mount.innerHTML = ""; // unload dashboard
+    };
 
-  const closeModal = () => {
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  };
+    openBtn.addEventListener("click", openModal);
+    backdrop?.addEventListener("click", closeModal);
+    closeBtn?.addEventListener("click", closeModal);
 
-  openBtn.addEventListener("click", openModal);
-  backdrop?.addEventListener("click", closeModal);
-  closeBtn?.addEventListener("click", closeModal);
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  const openBtn = document.getElementById("openAirfareViz2");
-  const modal = document.getElementById("airfareVizModal2");
-
-  console.log("Dashboard 2 button:", openBtn);
-  console.log("Dashboard 2 modal:", modal);
-
-  if (!openBtn || !modal) {
-    console.error("Dashboard 2 wiring failed");
-    return;
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    });
   }
 
-  const backdrop = modal.querySelector(".viz-modal-backdrop");
-  const closeBtn = modal.querySelector(".viz-modal-close");
-
-  const openModal = () => {
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    initTableauInModal("viz-airfare-2");
-  };
-
-  const closeModal = () => {
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  };
-
-  openBtn.addEventListener("click", openModal);
-  backdrop?.addEventListener("click", closeModal);
-  closeBtn?.addEventListener("click", closeModal);
-
-  console.log("Dashboard 2 modal wired ✅");
+  wireModal("openAirfareViz", "airfareVizModal", "tableauMount1", DASHBOARD_1_URL);
+  wireModal("openAirfareViz2", "airfareVizModal2", "tableauMount2", DASHBOARD_2_URL);
 });
-

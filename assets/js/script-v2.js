@@ -605,3 +605,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   console.log("Airfare modal wired ✅");
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const openBtn = document.getElementById("openAirfareViz2");
+  const modal = document.getElementById("airfareVizModal2");
+
+  if (!openBtn || !modal) return;
+
+  const backdrop = modal.querySelector(".viz-modal-backdrop");
+  const closeBtn = modal.querySelector(".viz-modal-close");
+
+  const openModal = () => {
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    // Make Tableau fill the modal nicely
+    const divElement = document.getElementById("viz-airfare-2");
+    const vizElement = divElement?.getElementsByTagName("object")[0];
+    if (vizElement) {
+      vizElement.style.width = "100%";
+      vizElement.style.height = "85vh";
+      vizElement.style.display = "block";
+    }
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  openBtn.addEventListener("click", openModal);
+  backdrop.addEventListener("click", closeModal);
+  closeBtn.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+  });
+});

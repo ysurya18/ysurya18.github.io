@@ -76,12 +76,12 @@ navigationLinks.forEach(link => {
 });
 
 // Restore last visited page on load
-window.addEventListener("DOMContentLoaded", function () {
-  const savedPage = localStorage.getItem("currentPage");
-  if (savedPage) {
-    navigateToPage(savedPage);
-  }
-});
+// window.addEventListener("DOMContentLoaded", function () {
+//  const savedPage = localStorage.getItem("currentPage");
+//  if (savedPage) {
+//    navigateToPage(savedPage);
+//  }
+// });
 
 /*-----------------------------------*\
   #SCROLL TO TOP BUTTON

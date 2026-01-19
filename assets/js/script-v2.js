@@ -60,9 +60,6 @@ function navigateToPage(targetPage) {
     }
   });
   
-  // NEW LINE: This scrolls to the content box instead of the very top
-  document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
-  
   // Save current page to localStorage
   localStorage.setItem("currentPage", targetPage);
 }
@@ -71,6 +68,10 @@ navigationLinks.forEach(link => {
   link.addEventListener("click", function () {
     const targetPage = this.innerHTML.toLowerCase();
     navigateToPage(targetPage);
+
+    // ADD THE SCROLL LINE HERE: 
+    // This only triggers when a user actually clicks a button
+    document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
   });
 });
 

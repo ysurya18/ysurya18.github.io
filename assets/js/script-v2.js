@@ -60,13 +60,12 @@ function navigateToPage(targetPage) {
     }
   });
   
-  // Scroll to top
-  window.scrollTo(0, 0);
+  // NEW LINE: This scrolls to the content box instead of the very top
+  document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth' });
   
   // Save current page to localStorage
   localStorage.setItem("currentPage", targetPage);
 }
-
 // Add click event to all nav links
 navigationLinks.forEach(link => {
   link.addEventListener("click", function () {

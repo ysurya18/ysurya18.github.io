@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ride Fare Prediction & Data Pipeline · Surya Yogananthan</title>
-  <meta name="description" content="A Google BigQuery pipeline over 690K+ records sped up from 4 minutes to 12 seconds with PySpark, with fare models validated to $6.69 MAE and served through Flask.">
+  <meta name="description" content="A Google BigQuery pipeline over 690K+ Uber and Lyft ride quotes sped up from 4 minutes to 12 seconds with PySpark, with fare models validated to $6.69 MAE and served through Flask.">
   <link rel="canonical" href="https://ysurya18.github.io/projects/ride-fare-pipeline.html">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://ysurya18.github.io/projects/ride-fare-pipeline.html">
   <meta property="og:title" content="Ride Fare Prediction & Data Pipeline · Surya Yogananthan">
-  <meta property="og:description" content="A Google BigQuery pipeline over 690K+ records sped up from 4 minutes to 12 seconds with PySpark, with fare models validated to $6.69 MAE and served through Flask.">
+  <meta property="og:description" content="A Google BigQuery pipeline over 690K+ Uber and Lyft ride quotes sped up from 4 minutes to 12 seconds with PySpark, with fare models validated to $6.69 MAE and served through Flask.">
   <meta property="og:image" content="https://ysurya18.github.io/assets/images/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
@@ -59,10 +59,10 @@
         <a class="back-link" href="../index.html#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 19l-7-7 7-7"/></svg> All case studies</a>
         <p class="eyebrow" style="margin-top:28px">Graduate project · Data engineering & ML</p>
         <h1>Ride fare prediction: a pipeline fast enough to use</h1>
-        <p class="lede">This project had two halves: engineering a pipeline that could query 690K+ records quickly, and building models that predict ride fares accurately. The results were served through an interactive Flask dashboard.</p>
+        <p class="lede">693K Uber and Lyft price quotes from across Boston, and two jobs: build a pipeline fast enough to work with them, and predict what a ride will cost. The results were served through an interactive Flask dashboard.</p>
         <dl class="cs-meta">
           <div><dt>Timeline</dt><dd>Dec 2024 – Apr 2025</dd></div>
-          <div><dt>Data</dt><dd>690K+ records</dd></div>
+          <div><dt>Data</dt><dd>693K Uber &amp; Lyft ride quotes, Boston</dd></div>
           <div><dt>Stack</dt><dd>Google BigQuery, PySpark, SQL</dd></div>
           <div><dt>Modeling & app</dt><dd>Python, XGBoost, Random Forest, Flask</dd></div>
         </dl>
@@ -83,11 +83,26 @@
     <section>
       <div class="container prose-wrap">
         <ul class="toc" aria-label="On this page">
+          <li><a href="#data">The data</a></li>
           <li><a href="#pipeline">The pipeline</a></li>
           <li><a href="#models">The models</a></li>
           <li><a href="#serving">Serving it</a></li>
         </ul>
         <article class="prose">
+          <h2 id="data">The data</h2>
+          <p>A public dataset of <strong>693,071 ride price quotes</strong> from Uber and Lyft in Boston, collected between November 26 and December 18, 2018, alongside hourly weather readings for the same neighborhoods.</p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Dimension</th><th>What's in it</th></tr></thead>
+            <tbody>
+              <tr><td>Providers</td><td>Uber (385,663 quotes) and Lyft (307,408)</td></tr>
+              <tr><td>Ride types</td><td>13, from shared rides (UberPool, Lyft Shared) to premium (Black SUV, Lux Black XL)</td></tr>
+              <tr><td>Locations</td><td>12 Boston neighborhoods as pickup and drop-off points, including Back Bay, Fenway, the Financial District and Northeastern University</td></tr>
+              <tr><td>Trip features</td><td>Distance (median 2.2 miles), surge multiplier, timestamp, source and destination</td></tr>
+              <tr><td>Weather</td><td>6,276 hourly readings: temperature, rain, clouds, pressure, humidity and wind</td></tr>
+            </tbody>
+          </table></div>
+          <p>Two quirks shape any model built on it. Every Uber Taxi quote (<strong>55,095 rows</strong>) comes without a price, and <strong>97% of rides have no surge</strong>, so the surge pricing that riders notice most is rare in the data.</p>
+
           <h2 id="pipeline">The pipeline</h2>
           <p>The data lived in <strong>Google BigQuery</strong>. At 690K+ records, the initial queries took more than four minutes.</p>
           <p>Moving the heavy processing to <strong>PySpark</strong> brought query latency down from 4+ minutes to <strong>12 seconds</strong>, which made fast iteration on features and models possible.</p>
